@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script>
+        function chadagongyacksu(a, b) {
+            
+            if (b === 0) {
+                return a;
+            }
+            return chadagongyacksu(b, a % b);
+        }
+
+        function sosutobunsu(value) {
+            let denominator = 1;
+            while (Math.floor(value) !== value) {
+                value *= 10;
+                denominator *= 10;
+            }
+            let commonDivisor = chadagongyacksu(value, denominator);
+            return (value / commonDivisor) + "/" + (denominator / commonDivisor);
+        }
+
+        function calc(type) {
+            let x = parseFloat(document.calculator.number1.value);
+            let y;
+
+            if (type === 1) {
+                y = Math.sin((x * Math.PI) / 180.0);
+            } else if (type === 2) {
+                y = Math.log(x);
+            } else if (type === 3) {
+                y = Math.sqrt(x);
+            } else if (type === 4) {
+                y = Math.abs(x);
+            } else if (type === 5) {
+                let numerator = parseInt(document.calculator.numerator.value);
+                let denominator = parseInt(document.calculator.denominator.value);
+
+                if (isNaN(numerator) || isNaN(denominator) || denominator === 0) {
+                    alert("올바른 분수를 입력하세요.");
+                    return;
+                }
+                let commonDivisor = chadagongyacksu(numerator, denominator);
+                numerator /= commonDivisor;
+                denominator /= commonDivisor;
+
+                y = sosutobunsu(numerator / denominator);
+            }
+
+            document.calculator.total.value = y;
+        }
+    </script>
+</head>
+
+<body>
+    <form name="calculator">
+        입력: <input type="text" name="number1"><br />
+        분자: <input type="text" name="numerator"><br />
+        분모: <input type="text" name="denominator"><br />
+        계산 결과: <input type="text" name="total"><br />
+
+        <input type="button" value="SIN" onclick="calc(1);">
+        <input type="button" value="LOG" onclick="calc(2);">
+        <input type="button" value="SQRT" onclick="calc(3);">
+        <input type="button" value="ABS" onclick="calc(4);">
+        <input type="button" value="약분" onclick="calc(5);">
+    </form>
+</body>
+</html>

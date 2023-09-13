@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <p id="test">다음에 학습할 내용은 HTML입니다. </p>
+    <button onclick="strch()">HTML 학습을 끝냈으면 누르세요.</button>
+
+    <script>
+        function strch(){
+            let text = document.getElementById("test").innerHTML; //innerHTML이란 태그 안에 들어가 있는 속성값. 예를 들면 지금 위에 button>이거!!</button 에서 이거!!가 innerHTML이다.
+            document.getElementById("test").innerHTML = text.replace("HTML","JAVASCRIPT");
+        }
+
+
+    </script>
+</body>
+
+</html>

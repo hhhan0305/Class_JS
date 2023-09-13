@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>입력값 검사</title>
+</head>
+<body>
+    <h1>입력값 검사</h1>
+    <input type="text" id="inputText" placeholder="텍스트를 입력하세요">
+    <button onclick="checkInput()">검사</button>
+    <p id="result"></p>
+
+    <script>
+        function checkInput() {
+            let inputText = document.getElementById('inputText').value;
+            let resultElement = document.getElementById('result');
+
+            let pattern = /^(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[!@#$%^&*()_+{}\[\]:;<>,.?~\\-]).{8,}$/;
+            
+            if (pattern.test(inputText)) {
+                resultElement.innerHTML = "입력값이 유효합니다.";
+            } else {
+                resultElement.innerHTML = "영어, 숫자, 특수문자가 모두 포함되어야 하며, 8글자 이상이어야 합니다.";
+            }
+        }
+    </script>
+</body>
+</html>
