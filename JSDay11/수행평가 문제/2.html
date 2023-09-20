@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Calculator</title>
+    <script>
+        function add() {
+            let num1 = parseInt(document.getElementById("x").value); 
+            let num2 = parseInt(document.getElementById("y").value); 
+            let sum = num1 + num2;
+            document.getElementById("sum").value = sum;
+        }
+    </script>
+</head>
+
+<body>
+    <h1>10519_한동연</h1>
+    <h3>덧셈 계산기</h3>
+    <form name="myform" action="..." method="POST">
+        첫번째 정수: <input id="x" /><br />
+        두번째 정수: <input id="y" /><br />
+        합계: <input id="sum" /><br />
+        
+    </form>
+    <button id="ok" onclick="add()">계산</button>
+</body>
+
+</html>

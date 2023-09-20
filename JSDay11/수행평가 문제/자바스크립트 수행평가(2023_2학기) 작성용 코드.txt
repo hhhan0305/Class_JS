@@ -1,0 +1,122 @@
+1번
+<!DOCTYPEhtml>
+<html>
+<body>
+    <h1id="test">This is a heading.</h1>
+    <script>
+
+
+
+
+   </script>
+    <button type="button" >클릭하세요!</button>
+</body>
+</html>
+
+<html><head>
+    <title>Calculator</title>
+    <script>
+
+
+    </script>
+</head>
+<body>
+    <h3>덧셈 계산기</h3>
+    <form name="myform" action="..." method="POST">
+        첫번째 정수:         <input id="x"/><br/>
+        두번째 정수:         <input id="y"/><br/>
+        합계:          <input id="sum"/><br/>
+
+    </form>
+</body></html>
+
+3번
+<script>
+
+        document.write("<h1>구구단표</h1>");
+        document.write("<table border=2 width=50%");
+
+        for(let i= 1; i<= 9; i++) 
+
+
+
+</script>
+
+4번
+<script>
+
+
+    document.write(
+        date1 + "<br> 와 <br>" + date2 + " <br> 날짜 간의 총 일수: "
+        + diff_days);
+</script>
+
+5번
+<!DOCTYPEhtml>
+<html>
+<head>
+    <script>
+
+
+
+    </script>
+</head>
+<body>
+        아이디: <input type="text" id="id" size=10>
+        <button onclick="checkID()">검사</button>
+</body>
+</html>
+
+6번
+<!DOCTYPEhtml>
+<html>
+<body>
+    <p id="test">다음에 학습할 내용은 HTML입니다. </p>
+    <button onclick="myFun()">HTML 학습을 끝냈으면 누르세요. </button>
+    <script>
+        functionmyFun() {
+
+
+
+        }
+    </script>
+</body>
+</html>
+
+7번
+<html>
+<head></head>
+<body>
+    <script>
+        function printArray(a) {
+            document.write("[ ");
+
+
+            document.write(" ] <br>");
+        }
+        let myArray1 = new Array();
+
+
+
+
+        let myArray2 = 
+        let myArray3 = [			];
+
+        printArray(myArray1);
+        printArray(myArray2);
+        printArray(myArray3);
+    </script>
+</body></html>
+
+
+8번
+ <script>
+        let numbers = [10, 20, 30, 40, 50];
+        function isBig(element) {
+
+
+
+        }
+        let filtered = 
+        document.write("필터링 된 배열: "+ filtered);
+    </script>
