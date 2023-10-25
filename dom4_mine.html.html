@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <style>
+        * {
+            text-align: center;
+        }
+
+        #board {
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        #board tr td {
+            border: 1px solid white;
+            background: #34da79;
+            width: 16px;
+            height: 16px;
+            text-align: center;
+            cursor: pointer;
+        }
+
+        #board tr td.clicked {
+            background: #6c5ee7;
+        }
+
+        #board tr td.mine {
+            background: #FF0000;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>지뢰찾기</h1>
+    <table id="board">
+    </table>
+    <button onclick="genGrid();">세임 새로 만들기</button>
+    <button onclick="showHint();">찬스!</button>
+    <script>
+        let grid = document.getElementById("board");
+        let lastClickedCell = null;
+        let gameOver = false;
+
+        function genGrid() {
+            grid.innerHTML = "";
+            lastClickedCell = null;
+            gameOver = false;
+
+            for (let i = 0; i < 8; i++) {
+                let row = document.createElement("tr");
+                for (let j = 0; j < 8; j++) {
+                    let cell = document.createElement("td");
+                    cell.setAttribute("data-mine", Math.random() < 0.3 ? "true" : "false");
+                    cell.onclick = function() {
+                        if (!gameOver) {
+                            lastClickedCell = this;
+                            clickBox(this);
+                        }
+                    };
+                    row.appendChild(cell);
+                }
+                grid.appendChild(row);
+            }
+        }
+
+        function clickBox(cell) {
+            if (cell.getAttribute("data-mine") === "true") {
+                cell.className = "mine";
+                alert("푸하하 지뢰 밟았대요~!!");
+                gameOver = true;
+            } else {
+                cell.className = "clicked";
+                const rowIndex = cell.parentNode.rowIndex;
+                const cellIndex = cell.cellIndex;
+                const nearbyMines = countNearbyMines(rowIndex, cellIndex);
+                if (nearbyMines > 0) {
+                    alert(`조심해. 근처에 지뢰가 ${nearbyMines}개 있어..`);
+                }
+            }
+        }
+
+        function countNearbyMines(rowIndex, cellIndex) {
+            let nearbyMines = 0;
+            for (let i = -1; i <= 1; i++) {
+                for (let j = -1; j <= 1; j++) {
+                    if (i === 0 && j === 0) {
+                        continue;
+                    }
+                    const row = grid.rows[rowIndex + i];
+                    if (row) {
+                        const cell = row.cells[cellIndex + j];
+                        if (cell && cell.getAttribute("data-mine") === "true") {
+                            nearbyMines++;
+                        }
+                    }
+                }
+            }
+            return nearbyMines;
+        }
+
+        function showHint() {
+            if (lastClickedCell) {
+                let rowIndex = lastClickedCell.parentNode.rowIndex;
+                let cellIndex = lastClickedCell.cellIndex;
+                let nearbyMines = [];
+                for (let i = -1; i <= 1; i++) {
+                    for (let j = -1; j <= 1; j++) {
+                        if (i === 0 && j === 0) {
+                            continue;
+                        }
+                        const row = grid.rows[rowIndex + i];
+                        if (row) {
+                            const cell = row.cells[cellIndex + j];
+                            if (cell && cell.getAttribute("data-mine") === "true") {
+                                nearbyMines.push(cell);
+                            }
+                        }
+                    }
+                }
+                if (nearbyMines.length > 0) {
+                    const randomMineCell = nearbyMines[Math.floor(Math.random() * nearbyMines.length)];
+                    randomMineCell.innerHTML = "🚩";
+                }
+            }
+        }
+    </script>
+</body>
+</html>

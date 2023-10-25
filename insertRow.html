@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>나나나난</title>
+    <script>
+        function addRow() {
+            var table = document.getElementById("myTable");
+
+            var row = table.insertRow(0);
+
+            var cell1 = row.insertCell(0);
+            cell1.innerHTML = "새로운 셀";
+
+            var cell2 = row.insertCell(1);
+            cell2.innerHTML = "새로운 셀";
+
+            var deleteButton = document.createElement("button");
+            deleteButton.innerHTML = "지우기";
+            deleteButton.onclick = function() {
+                deleteRow(this);
+            };
+            var cell3 = row.insertCell(2);
+            cell3.appendChild(deleteButton);
+        }
+
+        function deleteRow(button) {
+            var row = button.parentNode.parentNode;
+            var table = row.parentNode;
+            table.deleteRow(row.rowIndex);
+        }
+    </script>
+</head>
+<body>
+    <table id="myTable" border="1">
+        <tr>
+            <td>(1,1) 셀</td>
+            <td>(1,2) 셀</td>
+        </tr>
+        <tr>
+            <td>(2,1) 셀</td>
+            <td>(2,2) 셀</td>
+        </tr>
+    </table>
+    <br>
+    <button onclick="addRow()">행! 추가</button>
+</body>
+</html>
