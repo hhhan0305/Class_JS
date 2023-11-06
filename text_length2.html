@@ -1,0 +1,43 @@
+<script>
+    function checkLength(elem, min, max) {
+        let s = elem.value;
+        if (s.length >= min && s.length <= max) {
+            document.getElementById("al").innerHTML = "올바른 입력값입니다.";
+            return true;
+        } else {
+            document.getElementById("al").innerHTML = "입력값이 올바르지 않습니다.";
+            elem.focus();
+            return false;
+        }
+    }
+</script>
+<form>
+    1부터 100 사이의 정수를 입력하시오.<br>
+    <input type='text' id='name' />
+    <input type='button'
+        onclick="checkLength(document.getElementById('name'), 1, 100)"
+        value='확인' /><br>
+    <p id="al"></p>
+</form>
+
+<!-- <!DOCTYPE html>
+<html>
+<body>
+    <p>1부터 100 사이의 정수를 입력하시오.</p>
+    <input id="test">
+    <button type="button" onclick="sub()">제출</button>
+    <p id="result"></p>
+    <script>
+        function sub() {
+            let value = document.getElementById("test").value;
+            let s;
+            if (//) {
+                s = "입력값이 올바르지 않습니다.";
+            } else {
+                s = "올바른 입력값입니다.";
+            }
+            document.getElementById("result").innerHTML = s;
+        }
+    </script>
+</body>
+</html> -->
