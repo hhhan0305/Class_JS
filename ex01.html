@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+  <p id="demo"></p>
+
+  <button onclick="myStop()">시간을 멈춰보자.</button>
+  <button onclick="recordTime()">시간을 기록해보자.</button>
+  <div id="history"></div>
+
+  <script>
+    const myInterval = setInterval(myTimer, 1);
+    const recordedTimes = [];
+
+    function myTimer() {
+      const date = new Date();
+      const hours = String(date.getHours()).padStart(2, '0');
+      const minutes = String(date.getMinutes()).padStart(2, '0');
+      const seconds = String(date.getSeconds()).padStart(2, '0');
+      const milliseconds = String(date.getMilliseconds()).padStart(3, '0');
+
+      document.getElementById("demo").innerHTML = `${hours}:${minutes}:${seconds}:${milliseconds}`;
+    }
+
+    function myStop() {
+      clearInterval(myInterval);
+    }
+
+    function recordTime() {
+      const date = new Date();
+      const hours = String(date.getHours()).padStart(2, '0');
+      const minutes = String(date.getMinutes()).padStart(2, '0');
+      const seconds = String(date.getSeconds()).padStart(2, '0');
+      const milliseconds = String(date.getMilliseconds()).padStart(3, '0');
+
+      const recordedTime = `${hours}:${minutes}:${seconds}:${milliseconds}`;
+      recordedTimes.push(recordedTime);
+      updateHistory();
+    }
+
+    function updateHistory() {
+      const historyElement = document.getElementById("history");
+      historyElement.innerHTML = "<strong>기록:</strong><br>";
+
+      recordedTimes.forEach((recordedTime, index) => {
+        historyElement.innerHTML += `${index + 1}. ${recordedTime}<br>`;
+      });
+    }
+  </script>
+
+</body>
+</html>
