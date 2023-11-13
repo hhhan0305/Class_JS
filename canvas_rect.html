@@ -1,0 +1,45 @@
+<!DOCTYPE HTML>
+<html>
+<body>
+    <canvas id="myCanvas" width="500" height="500"></canvas>
+    <script>
+    let canvas = document.getElementById('myCanvas');
+    let context = canvas.getContext('2d');
+
+    //완료
+
+    //빨강, 테두리
+    context.beginPath();
+    context.rect(10, 10, 100, 100);
+    context.stroke();
+    context.fillStyle = "red";
+    context.fill();
+
+    //초록, none
+    context.beginPath();
+    context.rect(150, 10, 100, 100);
+    context.fillStyle = "green";
+    context.fill();
+
+    //파랑, none
+    context.beginPath();
+    context.rect(10, 150, 100, 100);
+    context.fillStyle = "blue";
+    context.fill();
+
+    //노랑, 테두리
+    context.beginPath();
+    context.rect(150, 150, 100, 100);
+    context.stroke();
+    context.fillStyle = "yellow";
+    context.fill();
+
+    //보라, 테두리, 가운데
+    context.beginPath();
+    context.rect(250/2 - 100/2 + 10 /2, 250/2 - 100/2 + 10/2, 100, 100);
+    context.stroke();
+    context.fillStyle = "purple";
+    context.fill();
+    </script>
+    </body>
+    </html>

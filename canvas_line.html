@@ -1,0 +1,34 @@
+<!DOCTYPE HTML>
+<html>
+
+<body>
+    <canvas id="myCanvas" width="400" height="200"></canvas>
+    <script>
+        let canvas = document.getElementById('myCanvas');
+        let context = canvas.getContext('2d');
+
+        // Draw the first set of triangles
+        context.fillStyle = "orange";
+        context.beginPath();
+        context.moveTo(100, 25);
+        context.lineTo(30, 100);
+        context.lineTo(150, 100);
+        context.fill();
+        context.beginPath();
+        context.moveTo(200, 25);
+        context.lineTo(130, 100);
+        context.lineTo(250, 100);
+        context.closePath();
+        context.stroke();
+
+        // Draw another triangle next to the first one
+        context.fillStyle = "blue";
+        context.beginPath();
+        context.moveTo(160, 25);
+        context.lineTo(90, 100);
+        context.lineTo(210, 100);
+        context.fill();
+    </script>
+</body>
+
+</html>

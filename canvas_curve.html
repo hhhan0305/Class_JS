@@ -1,0 +1,37 @@
+<!DOCTYPE HTML>
+<html>
+
+<body>
+    <canvas id="myCanvas" width="300" height="400"></canvas>
+    <script>
+        let canvas = document.getElementById('myCanvas');
+        let context = canvas.getContext('2d');
+
+        context.beginPath();
+        context.moveTo(90, 130);
+        context.bezierCurveTo(140, 10, 288, 10, 288, 130);
+        context.lineWidth = 10;
+        context.strokeStyle = 'black';
+        context.stroke();
+
+        context.beginPath();
+        context.moveTo(90, 270);
+        context.bezierCurveTo(140, 390, 288, 390, 288, 270);
+        context.lineWidth = 10;
+        context.strokeStyle = 'black';
+        context.stroke();
+
+        context.beginPath();
+        context.moveTo(90, 130);
+        context.lineTo(90, 270);
+
+        context.moveTo(288, 130);
+        context.lineTo(288, 270);
+
+        context.lineWidth = 10;
+        context.strokeStyle = 'yellow';
+        context.stroke();
+    </script>
+</body>
+
+</html>
