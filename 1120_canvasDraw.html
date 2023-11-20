@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+
+<style>
+    #myCanvas {
+        background-color: rgb(241, 239, 209);
+        border: 1px dotted blue;
+    }
+</style>
+
+<body>
+    <div id="controls">
+        <div>
+            <select id="modeSelect" onchange="changeMode()">
+                <option value="draw" selected>그리기</option>
+                <option value="erase">지우개</option>
+            </select>
+        </div>
+        <div id="colorPickerContainer">
+            <input type="color" id="colorPicker" value="#000000">
+        </div>
+        <button onclick="clearCanvas()">화면 지우기</button>
+    </div>
+    <canvas id="myCanvas" width="600" height="400"></canvas>
+
+    <script>
+        let canvas = document.getElementById("myCanvas");
+        let context = canvas.getContext("2d");
+        let last_x = 0, last_y = 0;
+        let draw_mode = false;
+        let eraser_mode = false;
+
+        let colorPickerContainer = document.getElementById("colorPickerContainer");
+        let colorPicker = document.getElementById("colorPicker");
+        let modeSelect = document.getElementById("modeSelect");
+
+        function clearCanvas() {
+            context.clearRect(0, 0, canvas.width, canvas.height);
+        }
+
+        function changeMode() {
+            let selectedMode = modeSelect.value;
+
+            if (selectedMode === "draw") {
+                colorPickerContainer.style.display = "block";
+                eraser_mode = false;
+            } else if (selectedMode === "erase") {
+                colorPickerContainer.style.display = "none";
+                eraser_mode = true;
+            }
+        }
+
+        colorPicker.addEventListener("input", function (event) {
+            context.strokeStyle = colorPicker.value;
+        });
+
+        canvas.addEventListener("mousemove", function (event) {
+            if (!draw_mode) return;
+            let x = event.offsetX;
+            let y = event.offsetY;
+
+            if (eraser_mode) {
+                context.beginPath();
+                context.arc(x, y, 10, 0, 2 * Math.PI);
+                context.fillStyle = "rgb(241, 239, 209)";
+                context.fill();
+            } else {
+                context.lineTo(x, y);
+                context.stroke();
+                last_x = x;
+                last_y = y;
+            }
+        });
+
+        canvas.addEventListener("mousedown", function (event) {
+            if (eraser_mode) {
+                draw_mode = true;
+            } else {
+                last_x = event.offsetX;
+                last_y = event.offsetY;
+                context.beginPath();
+                context.moveTo(last_x, last_y);
+                context.strokeStyle = colorPicker.value;
+                draw_mode = true;
+            }
+        });
+
+        canvas.addEventListener("mouseup", function (event) {
+            draw_mode = false;
+        });
+
+        canvas.addEventListener("mouseout", function (event) {
+            draw_mode = false;
+        });
+    </script>
+</body>
+
+</html>
